@@ -4,6 +4,8 @@ import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProv
 import { createAccount } from './routes/auth/create-account'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUI from '@fastify/swagger-ui'
+import { authenticateWithPassword } from './routes/auth/authenticate-with-password'
+import fastifyJwt from '@fastify/jwt'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -26,9 +28,14 @@ app.register(fastifySwagger, {
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
 
+app.register(fastifyJwt, {
+    secret: 'my-secret-key',
+})
+
 app.register(fastifyCors)
 
 app.register(createAccount)
+app.register(authenticateWithPassword)
 
 app.listen({ port: 3333 }).then(() => {
     console.log('Server is running 🔥')
