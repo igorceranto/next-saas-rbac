@@ -3,7 +3,7 @@
 module.exports = {
   extends: ['@rocketseat/eslint-config/next'],
   plugins: ['simple-import-sort'],
-  roles: {
+  rules: {
     'simple-import-sort/sort': 'error',
   },
 }
