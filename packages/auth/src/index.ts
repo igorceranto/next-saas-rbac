@@ -48,5 +48,8 @@ export function defineAbilityFor(user: User) {
     },
   })
 
+  ability.can = ability.can.bind(ability) // Fix TS error with `can` method not being callable
+  ability.cannot = ability.cannot.bind(ability) // Fix TS error with `cannot` method not being callable
+
   return ability
 }
