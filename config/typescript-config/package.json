@@ -3,5 +3,5 @@
   "version": "0.0.0",
   "private": false,
   "license": "MIT",
-  "files": ["library.json"]
+  "files": ["library.json", "node.json", "nextjs.json"]
 }
