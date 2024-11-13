@@ -1,7 +1,6 @@
 'use client'
 
 import { AlertTriangle, Loader2 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 
 import { useFormState } from '@/app/hooks/use-form-state'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -13,7 +12,6 @@ import { Label } from '@/components/ui/label'
 import { createOrganizationAction } from './actions'
 
 export function OrganizationForm() {
-  const router = useRouter()
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
     createOrganizationAction,
     () => {},
