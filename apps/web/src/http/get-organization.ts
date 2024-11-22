@@ -1,16 +1,27 @@
 import { api } from './api-client'
 
+interface GetOrganizationRequest {
+  org: string
+}
+
 interface GetOrganizationResponse {
-  organizations: {
+  organization: {
     id: string
     name: string
     slug: string
+    domain: string | null
+    shouldAttachUsersByDomain: boolean
     avatarUrl: string | null
-  }[]
+    createdAt: string
+    updatedAt: string
+    ownerId: string
+  }
 }
 
-export async function getOrganization(): Promise<GetOrganizationResponse> {
-  const result = api.get('organizations').json<GetOrganizationResponse>()
+export async function getOrganization({
+  org,
+}: GetOrganizationRequest): Promise<GetOrganizationResponse> {
+  const result = api.get(`organizations/${org}`).json<GetOrganizationResponse>()
 
   return result
 }
