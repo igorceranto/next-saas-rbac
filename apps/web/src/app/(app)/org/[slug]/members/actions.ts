@@ -5,11 +5,11 @@ import { revalidateTag } from 'next/cache'
 
 import { getCurrentOrg } from '@/auth/auth'
 import { removeMember } from '@/http/remove-member'
+import { revokeInvite } from '@/http/revoke-invite'
 import { updateMember } from '@/http/update-member'
 
 export async function removeMemberAction(memberId: string) {
-  // remove member from org
-  const correntOrg = await getCurrentOrg()
+  const correntOrg = getCurrentOrg()
 
   await removeMember({
     org: correntOrg!,
@@ -20,8 +20,7 @@ export async function removeMemberAction(memberId: string) {
 }
 
 export async function updateMemberAction(memberId: string, role: Role) {
-  // remove member from org
-  const correntOrg = await getCurrentOrg()
+  const correntOrg = getCurrentOrg()
 
   await updateMember({
     org: correntOrg!,
@@ -30,4 +29,15 @@ export async function updateMemberAction(memberId: string, role: Role) {
   })
 
   revalidateTag(`${correntOrg}/members`)
+}
+
+export async function revokeInviteAction(inviteId: string) {
+  const correntOrg = getCurrentOrg()
+
+  await revokeInvite({
+    org: correntOrg!,
+    inviteId,
+  })
+
+  revalidateTag(`${correntOrg}/invites`)
 }

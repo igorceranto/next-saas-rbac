@@ -13,7 +13,7 @@ export async function revokeInvite(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
-    .post(
+    .delete(
       '/organizations/:slug/invites/:inviteId',
       {
         schema: {
@@ -22,7 +22,7 @@ export async function revokeInvite(app: FastifyInstance) {
           security: [{ bearerAuth: [] }],
           params: z.object({
             slug: z.string(),
-            inviteid: z.string().uuid(),
+            inviteId: z.string().uuid(),
           }),
           response: {
             204: z.null(),
@@ -30,7 +30,9 @@ export async function revokeInvite(app: FastifyInstance) {
         },
       },
       async (request, reply) => {
-        const { slug, inviteid } = request.params
+        const { slug, inviteId } = request.params
+
+        console.log(inviteId)
 
         const userId = await request.getCurrentUserId()
         const { organization, membership } =
@@ -44,7 +46,7 @@ export async function revokeInvite(app: FastifyInstance) {
 
         const invite = await prisma.invite.findUnique({
           where: {
-            id: inviteid,
+            id: inviteId,
             organizationId: organization.id,
           },
         })
@@ -55,7 +57,7 @@ export async function revokeInvite(app: FastifyInstance) {
 
         await prisma.invite.delete({
           where: {
-            id: inviteid,
+            id: inviteId,
           },
         })
 
