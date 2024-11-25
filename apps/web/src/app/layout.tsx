@@ -12,7 +12,7 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: 'Create Next App',
+  title: 'SaaS Starter',
 }
 
 export default function RootLayout({

@@ -11,7 +11,7 @@ interface GetMembershipResponse {
   }
 }
 
-export async function GetMembership(
+export async function getMembership(
   org: string,
 ): Promise<GetMembershipResponse> {
   const result = api
