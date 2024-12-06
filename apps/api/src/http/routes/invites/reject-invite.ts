@@ -11,7 +11,7 @@ export async function rejectInvite(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
-    .post(
+    .patch(
       '/invites/:inviteId/reject',
       {
         schema: {

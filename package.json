@@ -8,19 +8,19 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "turbo": "^2.1.1"
+    "turbo": "^2.3.3"
   },
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.8.2",
+  "packageManager": "npm@10.9.2",
   "workspaces": [
     "apps/*",
     "packages/*",
     "config/*"
   ],
   "dependencies": {
-    "cookies-next": "4.3.0"
+    "cookies-next": "5.0.2"
   },
   "overrides": {
     "react": "19.0.0-rc-f994737d14-20240522",
