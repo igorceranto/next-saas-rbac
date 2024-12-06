@@ -4,7 +4,7 @@ This project contains all the necessary boilerplate to setup a multi-tenant SaaS
  
 ## Features
 
-### Authentication
+### Authentication 
 
 - [ ] It should be able to authenticate using e-mail & password;
 - [ ] It should be able to authenticate using Github account;
